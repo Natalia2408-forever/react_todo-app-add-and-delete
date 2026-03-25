@@ -3,6 +3,13 @@ import { Todo } from '../../types/Todo';
 import classNames from 'classnames';
 import { Filter } from '../../types/Filter';
 
+type TFilter = {
+  label: string;
+  value: Filter;
+  href: string;
+  dataCy: string;
+};
+
 type Props = {
   todos: Todo[];
   selected: Filter;
@@ -18,12 +25,7 @@ export const Footer: React.FC<Props> = ({
 }) => {
   const count = todos.filter(todo => !todo.completed).length;
 
-  const filters: {
-    label: string;
-    value: Filter;
-    href: string;
-    dataCy: string;
-  }[] = [
+  const filters: TFilter[] = [
     { label: 'All', value: Filter.All, href: '#/', dataCy: 'FilterLinkAll' },
     {
       label: 'Active',
